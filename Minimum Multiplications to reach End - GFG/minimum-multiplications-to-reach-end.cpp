@@ -12,7 +12,7 @@ class Solution {
   public:
     int minimumMultiplications(vector<int>& arr, int start, int end) {
         queue<pair<int, int>> q;
-        q.push({start, 0});
+        q.push({0,start});
 
         // Create a dist array to store the no. of multiplications to reach
         // a particular number from the start number.
@@ -24,8 +24,8 @@ class Solution {
         // until we get the end no.
         while (!q.empty())
         {
-            int node = q.front().first;
-            int steps = q.front().second;
+            int steps = q.front().first;
+            int node = q.front().second;
             q.pop();
 
             for (auto it : arr)
@@ -42,7 +42,7 @@ class Solution {
                     // return the calculated steps
                     if (num == end)
                         return steps + 1;
-                    q.push({num, steps + 1});
+                    q.push({steps + 1, num});
                 }
             }
         }
